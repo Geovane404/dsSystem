@@ -10,7 +10,7 @@ import com.gtecnologia.appStore.entities.User;
 @RestController
 @RequestMapping(value = "/users")
 public class UserResource {
-	
+
 	@GetMapping
 	public ResponseEntity<User> finAll() {
 		User n1 = new User(1L, "Maria", "maria@gmail.com", "90909090", "1234567");
@@ -18,5 +18,4 @@ public class UserResource {
 		User n3 = new User(3L, "Jose", "jose@gmail.com", "90909090", "1234567");
 		return ResponseEntity.ok().body(n1);
 	}
-	
 }
