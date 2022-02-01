@@ -85,7 +85,7 @@ public class Order implements Serializable {
 	public Set<OrderItem> getItems() {
 		return items;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
