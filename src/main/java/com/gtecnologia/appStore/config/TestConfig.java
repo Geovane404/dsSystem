@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.gtecnologia.appStore.entities.Category;
 import com.gtecnologia.appStore.entities.Order;
+import com.gtecnologia.appStore.entities.OrderItem;
 import com.gtecnologia.appStore.entities.Product;
 import com.gtecnologia.appStore.entities.User;
 import com.gtecnologia.appStore.entities.enums.OrderStatus;
 import com.gtecnologia.appStore.repositories.CategoryRepository;
+import com.gtecnologia.appStore.repositories.OrderItemRepository;
 import com.gtecnologia.appStore.repositories.OrderRepository;
 import com.gtecnologia.appStore.repositories.ProductRepository;
 import com.gtecnologia.appStore.repositories.UserRepository;
@@ -33,6 +35,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private OrderItemRepository orderItemRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -54,11 +59,17 @@ public class TestConfig implements CommandLineRunner {
 		Category cat1 = new Category(null, "Electronics");
 		Category cat2 = new Category(null, "Books");
 		Category cat3 = new Category(null, "Computers");
+		
+		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
 
 		userRepository.saveAll(Arrays.asList(u1, u2, u3));
 		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
 		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
 		
 		p1.getCategories().add(cat2);
 		p2.getCategories().add(cat1);
